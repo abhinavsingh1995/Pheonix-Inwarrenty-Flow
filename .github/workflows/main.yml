@@ -48,6 +48,24 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: newman/
+
+      - name: Send Email
+        if: always() #sends email always
+        uses: dawidd6/action-send-mail@v8
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME}}
+          password: ${{ secrets.EMAIL_PASSWORD}}
+          subject: Phoenix Inwarrenty flow test execution
+          to: abhinavsingh6925@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME}}
+          body: |
+                Hi,
+                Phoenix Inwarrently Flow is excuted and the results are pulished on the below URL
+                is: https://abhinavsingh1995.github.io/Pheonix-Inwarrenty-Flow/
+          
+          
         
       
     
